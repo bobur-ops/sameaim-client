@@ -19,7 +19,7 @@ import Logo from './Logo'
 const LinkItem = ({ href, children }) => {
   return (
     <NextLink href={href}>
-      <Link fontFamily="Montserrat" fontWeight="600">
+      <Link color="#000" fontWeight="600">
         {children}
       </Link>
     </NextLink>
@@ -48,7 +48,6 @@ const Navbar = props => {
           width={{ base: 'full', md: 'auto' }}
           gap={71}
           alignItems="center"
-          // flexGrow={1}
           mt={{ base: 4, md: 0 }}
         >
           <LinkItem href="#about">About us</LinkItem>
