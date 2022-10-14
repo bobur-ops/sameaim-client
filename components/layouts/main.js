@@ -10,7 +10,6 @@ const Main = ({ children, router }) => {
         <title>Same Aim</title>
         <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-
       <Navbar path={router.asPath} />
 
       <Container maxW="container.lg" p={2} pl={3}>

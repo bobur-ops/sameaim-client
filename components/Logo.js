@@ -1,6 +1,6 @@
 // import { Text } from '@chakra-ui/react'
+import { Image } from '@chakra-ui/react'
 import styled from '@emotion/styled'
-import Image from 'next/image'
 import Link from 'next/link'
 
 const LogoBox = styled.span``
@@ -11,7 +11,7 @@ const Logo = () => {
   return (
     <Link href="/">
       <LogoBox>
-        <Image width={80} height={80} src={logoSameAim} alt="logo" />
+        <Image src={logoSameAim} alt="logo" />
       </LogoBox>
     </Link>
   )

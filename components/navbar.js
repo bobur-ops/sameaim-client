@@ -5,15 +5,22 @@ import {
   Container,
   Flex,
   Heading,
+  HStack,
+  Icon,
   IconButton,
   Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Stack
+  Stack,
+  Text
 } from '@chakra-ui/react'
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
+import { BsFillPersonFill } from 'react-icons/bs'
+import { useGlobalContext } from '../context/GlobalContext'
 import Logo from './Logo'
 
 const LinkItem = ({ href, children }) => {
@@ -27,6 +34,9 @@ const LinkItem = ({ href, children }) => {
 }
 
 const Navbar = props => {
+  const router = useRouter()
+  const { user } = useGlobalContext()
+
   return (
     <Box as="nav" w="100%" {...props}>
       <Container
@@ -37,11 +47,9 @@ const Navbar = props => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Flex align="center" mr={5}>
-          <Heading as="h1" size="lg" letterSpacing={'tighter'}>
-            <Logo />
-          </Heading>
-        </Flex>
+        <Box cursor={'pointer'}>
+          <Logo />
+        </Box>
         <Stack
           direction={{ base: 'column', md: 'row' }}
           display={{ base: 'none', md: 'flex' }}
@@ -81,9 +89,21 @@ const Navbar = props => {
             </Menu>
           </Box>
         </Box>
-        <Button bg="#7195E1" color="white" w="fit-content">
-          Sign In
-        </Button>
+        {user === null ? (
+          <Button
+            onClick={() => router.push('/signup')}
+            bg="#7195E1"
+            color="white"
+            w="fit-content"
+          >
+            Sign In
+          </Button>
+        ) : (
+          <HStack cursor={'pointer'} onClick={() => router.push('/profile')}>
+            <Icon width={'30px'} height={'30px'} as={BsFillPersonFill} />
+            <Text>{user?.fullName}</Text>
+          </HStack>
+        )}
       </Container>
     </Box>
   )
