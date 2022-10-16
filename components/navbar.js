@@ -25,7 +25,7 @@ import Logo from './Logo'
 
 const LinkItem = ({ href, children }) => {
   return (
-    <NextLink href={href}>
+    <NextLink href={`#${href}`}>
       <Link color="#000" fontWeight="600">
         {children}
       </Link>
@@ -50,7 +50,7 @@ const Navbar = props => {
         <Box cursor={'pointer'}>
           <Logo />
         </Box>
-        <Stack
+        {/* <Stack
           direction={{ base: 'column', md: 'row' }}
           display={{ base: 'none', md: 'flex' }}
           width={{ base: 'full', md: 'auto' }}
@@ -58,10 +58,10 @@ const Navbar = props => {
           alignItems="center"
           mt={{ base: 4, md: 0 }}
         >
-          <LinkItem href="#about">About us</LinkItem>
-          <LinkItem href="#news">News</LinkItem>
-          <LinkItem href="#rating">Rating</LinkItem>
-          <LinkItem href="#create">Create Club</LinkItem>
+          <LinkItem href="about">About us</LinkItem>
+          <LinkItem href="news">News</LinkItem>
+          <LinkItem href="rating">Rating</LinkItem>
+          <LinkItem href="create">Create Club</LinkItem>
         </Stack>
         <Box flex={{ base: 1, md: 0 }} mr={5} align="right">
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }}>
@@ -88,7 +88,7 @@ const Navbar = props => {
               </MenuList>
             </Menu>
           </Box>
-        </Box>
+        </Box> */}
         {user === null ? (
           <Button
             onClick={() => router.push('/signup')}

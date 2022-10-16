@@ -7,12 +7,13 @@ import {
   FormLabel,
   Heading,
   Input,
+  Link,
   Stack,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
 import { setCookie } from 'cookies-next'
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -37,14 +38,13 @@ const SignIn = () => {
       try {
         toast('Processing...')
         const res = await loginUser(data)
-        if (rememberMe) {
-          setCookie('user', JSON.stringify(res.data.result))
-        }
+        setCookie('user', JSON.stringify(res.data.result))
         authUser(res.data.result)
         toast.success(`Logged in as ${res.data.result.fullName}`)
         router.push('/')
       } catch (error) {
-        toast.error(`${error.response.data.message}`)
+        console.log(error)
+        // toast.error(`${error.response.data.message}`)
       }
     }
   }
@@ -79,18 +79,6 @@ const SignIn = () => {
               />
             </FormControl>
             <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'start'}
-                justify={'space-between'}
-              >
-                <Checkbox
-                  checked={rememberMe}
-                  onChange={e => setRememberMe(e.target.checked)}
-                >
-                  Remember me
-                </Checkbox>
-              </Stack>
               <Button
                 bg={'blue.400'}
                 color={'white'}
@@ -107,9 +95,9 @@ const SignIn = () => {
             <Stack pt={6}>
               <Text align={'center'}>
                 Do not have an account?{' '}
-                <Link href="/signup" color={'blue.400'}>
-                  Sign Up
-                </Link>
+                <NextLink href="/signup">
+                  <Link color={'blue.400'}>Sign Up</Link>
+                </NextLink>
               </Text>
             </Stack>
           </Stack>

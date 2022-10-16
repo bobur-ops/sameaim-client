@@ -80,3 +80,22 @@ export const dummyRating = [
     createdAt: '2022-30-09'
   }
 ]
+
+export const dummyClubs = [
+  {
+    author: 'madina',
+    clubName: 'Animal Protection',
+    description: 'Club for helping to animals',
+    posts: [],
+    members: ['Bobur', 'Madina', 'Damir'],
+    clubId: '2'
+  },
+  {
+    author: 'madina',
+    clubName: 'Animal Protection',
+    description: 'Club for helping to animals',
+    posts: [],
+    members: ['Bobur', 'Madina', 'Damir'],
+    clubId: '3'
+  }
+]

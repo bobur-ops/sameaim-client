@@ -9,11 +9,13 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  Link,
   Stack,
   Text,
   useColorModeValue
 } from '@chakra-ui/react'
-import Link from 'next/link'
+import { setCookie } from 'cookies-next'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
@@ -39,8 +41,7 @@ const SignUp = () => {
     try {
       toast('Processing...')
       const res = await createUser(data)
-      localStorage.setItem('user', JSON.stringify(res.data.result))
-      // dispatch(signup(res.data.result))
+      setCookie('user', JSON.stringify(res.data.result))
       toast.success(`Logged in as ${res.data.result.fullName}`)
       router.push('/')
     } catch (error) {
@@ -114,9 +115,9 @@ const SignUp = () => {
             <Stack pt={6}>
               <Text align={'center'}>
                 Already a user?{' '}
-                <Link href="/signin" color={'blue.400'}>
-                  Log In
-                </Link>
+                <NextLink href="/signin">
+                  <Link color={'blue.400'}>Log In</Link>
+                </NextLink>
               </Text>
             </Stack>
           </Stack>
