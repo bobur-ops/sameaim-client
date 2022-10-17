@@ -22,11 +22,11 @@ import { useGlobalContext } from '../../context/GlobalContext'
 
 const SignIn = () => {
   const router = useRouter()
-  const { authUser } = useGlobalContext()
+  const { getMyUser } = useGlobalContext()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [rememberMe, setRememberMe] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const submitSignin = async () => {
     const data = {
@@ -36,15 +36,16 @@ const SignIn = () => {
 
     if (email && password) {
       try {
-        toast('Processing...')
+        setLoading(true)
         const res = await loginUser(data)
-        setCookie('user', JSON.stringify(res.data.result))
-        authUser(res.data.result)
+        setCookie('user', res.data.result.userId)
         toast.success(`Logged in as ${res.data.result.fullName}`)
+        setLoading(false)
+        getMyUser()
         router.push('/')
       } catch (error) {
-        console.log(error)
-        // toast.error(`${error.response.data.message}`)
+        setLoading(false)
+        toast.error(`${error.response.data.message}`)
       }
     }
   }
@@ -83,6 +84,8 @@ const SignIn = () => {
                 bg={'blue.400'}
                 color={'white'}
                 size={'lg'}
+                loadingText="Processing..."
+                isLoading={loading}
                 _hover={{
                   bg: 'blue.500'
                 }}
@@ -95,7 +98,7 @@ const SignIn = () => {
             <Stack pt={6}>
               <Text align={'center'}>
                 Do not have an account?{' '}
-                <NextLink href="/signup">
+                <NextLink scroll={false} href="/signup">
                   <Link color={'blue.400'}>Sign Up</Link>
                 </NextLink>
               </Text>

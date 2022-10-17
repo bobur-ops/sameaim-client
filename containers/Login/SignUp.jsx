@@ -20,15 +20,18 @@ import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { createUser } from '../../api/client'
+import { useGlobalContext } from '../../context/GlobalContext'
 import { uniqueId } from '../../utils/uniqueId'
 
 const SignUp = () => {
   const router = useRouter()
+  const { getMyUser } = useGlobalContext()
 
   const [showPassword, setShowPassword] = useState(false)
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const submitSignUp = async () => {
     const data = {
@@ -39,12 +42,15 @@ const SignUp = () => {
     }
 
     try {
-      toast('Processing...')
+      setLoading(true)
       const res = await createUser(data)
-      setCookie('user', JSON.stringify(res.data.result))
+      setCookie('user', res.data.result.userId)
       toast.success(`Logged in as ${res.data.result.fullName}`)
+      setLoading(false)
+      getMyUser()
       router.push('/')
     } catch (error) {
+      setLoading(false)
       toast.error(`${error.response.data.message}`)
     }
   }
@@ -103,6 +109,8 @@ const SignUp = () => {
                 bg={'blue.400'}
                 color={'white'}
                 size={'lg'}
+                loadingText="Processing..."
+                isLoading={loading}
                 _hover={{
                   bg: 'blue.500'
                 }}
@@ -115,7 +123,7 @@ const SignUp = () => {
             <Stack pt={6}>
               <Text align={'center'}>
                 Already a user?{' '}
-                <NextLink href="/signin">
+                <NextLink scroll={false} href="/signin">
                   <Link color={'blue.400'}>Log In</Link>
                 </NextLink>
               </Text>

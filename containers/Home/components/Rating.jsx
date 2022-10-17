@@ -11,10 +11,11 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react'
+import moment from 'moment'
 import { useRouter } from 'next/router'
-import { dummyRating } from '../../../demo/data'
+import { useEffect } from 'react'
 
-const Rating = () => {
+const Rating = ({ data }) => {
   const router = useRouter()
 
   return (
@@ -34,17 +35,17 @@ const Rating = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {dummyRating.map(item => (
+            {data?.map((item, index) => (
               <Tr
                 cursor="pointer"
-                onClick={() => router.push(`/clubs/${item.index}`)}
-                key={item.index}
+                onClick={() => router.push(`/clubs/${item.clubId}`)}
+                key={item.clubId}
               >
-                <Td>#{item.index}</Td>
+                <Td>#{index + 1}</Td>
                 <Td>{item.clubName}</Td>
-                <Td>{item.members}</Td>
+                <Td>{item.members.length}</Td>
                 <Td display={{ base: 'none', md: 'table-cell' }}>
-                  {item.createdAt}
+                  {moment(item.createdAt).format('LL')}
                 </Td>
               </Tr>
             ))}

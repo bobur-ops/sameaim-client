@@ -17,7 +17,6 @@ import { useEffect, useState } from 'react'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { getClubsApi } from '../../api/client'
 import { useGlobalContext } from '../../context/GlobalContext'
-import { dummyClubs } from '../../demo/data'
 import ClubsItem from './components/ClubsItem'
 
 const Profile = () => {
@@ -28,11 +27,11 @@ const Profile = () => {
 
   const getMyClubs = async () => {
     try {
-      const myUser = JSON.parse(getCookie('user'))
+      const userId = getCookie('user')
       setLoading(true)
       const response = await getClubsApi()
       const filteredClubs = response.data.data.filter(
-        item => JSON.parse(item.author).userId === myUser.userId
+        item => JSON.parse(item.author).userId === userId
       )
       setMyClubs(filteredClubs)
       setLoading(false)
@@ -56,7 +55,7 @@ const Profile = () => {
     return (
       <Box display={'flex'} gap={'10px'}>
         <Text fontWeight={'semibold'}>You are not authenticated</Text>
-        <NextLink href={'/'}>
+        <NextLink scroll={false} href={'/'}>
           <Link color={'blue.400'}>Go to home page</Link>
         </NextLink>
       </Box>
@@ -87,7 +86,11 @@ const Profile = () => {
         <Stack flex={'start'}>
           {user.joinedClubs.length ? (
             user.joinedClubs.map(club => (
-              <NextLink key={club.clubId} href={`/club/${club.clubId}`}>
+              <NextLink
+                scroll={false}
+                key={club.clubId}
+                href={`/clubs/${club.clubId}`}
+              >
                 <Link>
                   <ClubsItem data={club} />
                 </Link>
@@ -113,7 +116,11 @@ const Profile = () => {
             </HStack>
           ) : myClubs.length ? (
             myClubs.map(club => (
-              <NextLink key={club.clubId} href={`/club/${club.clubId}`}>
+              <NextLink
+                scroll={false}
+                key={club.clubId}
+                href={`/clubs/${club.clubId}`}
+              >
                 <Link>
                   <ClubsItem data={club} />
                 </Link>

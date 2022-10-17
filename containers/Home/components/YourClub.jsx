@@ -13,7 +13,7 @@ const YourClub = () => {
         </Text>
         <Text maxW={'500px'}>
           To do this, first you need to{' '}
-          <NextLink href="/signup">
+          <NextLink scroll={false} href="/signup">
             <Link color={'blue'} fontWeight={'semibold'}>
               authorize
             </Link>
@@ -21,7 +21,7 @@ const YourClub = () => {
           and then press button below, and you will get into the form to create
           new club
         </Text>
-        <NextLink href="/create_club">
+        <NextLink scroll={false} href="/create_club">
           <Link>
             <Button colorScheme={'blue'}>Create Club</Button>
           </Link>

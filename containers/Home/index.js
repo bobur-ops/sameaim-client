@@ -3,12 +3,12 @@ import News from './components/News'
 import Rating from './components/Rating'
 import YourClub from './components/YourClub'
 
-const Home = () => {
+const Home = ({ ratingData }) => {
   return (
     <div>
       <Header />
       <News />
-      <Rating />
+      <Rating data={ratingData} />
       <YourClub />
     </div>
   )

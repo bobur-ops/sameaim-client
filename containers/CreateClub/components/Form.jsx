@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 
-const Form = ({ create }) => {
+const Form = ({ create, loading }) => {
   const [clubName, setClubName] = useState('')
   const [description, setDescription] = useState('')
 
@@ -31,6 +31,8 @@ const Form = ({ create }) => {
         />
       </FormControl>
       <Button
+        isLoading={loading}
+        loadingText="Creating..."
         onClick={() => create({ clubName, description })}
         colorScheme={'blue'}
       >

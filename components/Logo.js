@@ -9,7 +9,7 @@ const Logo = () => {
   const logoSameAim = '/img/logo.svg'
 
   return (
-    <Link href="/">
+    <Link scroll={false} href="/">
       <LogoBox>
         <Image src={logoSameAim} alt="logo" />
       </LogoBox>

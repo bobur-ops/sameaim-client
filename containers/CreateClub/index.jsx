@@ -4,7 +4,7 @@ import { useGlobalContext } from '../../context/GlobalContext'
 import Form from './components/Form'
 
 const CreateClub = () => {
-  const { createClub, user } = useGlobalContext()
+  const { createClub, user, loading } = useGlobalContext()
 
   const submitClub = data => {
     createClub(data)
@@ -18,14 +18,14 @@ const CreateClub = () => {
       {user === null ? (
         <HStack>
           <Text>Please authorize to system before creating a club.</Text>
-          <NextLink href={'/'}>
+          <NextLink scroll={false} href={'/'}>
             <Link color={'blue'} fontWeight="semibold">
               Go to Home Page
             </Link>
           </NextLink>
         </HStack>
       ) : (
-        <Form create={submitClub} />
+        <Form create={submitClub} loading={loading} />
       )}
     </Box>
   )

@@ -25,7 +25,7 @@ import Logo from './Logo'
 
 const LinkItem = ({ href, children }) => {
   return (
-    <NextLink href={`#${href}`}>
+    <NextLink scroll={false} href={`#${href}`}>
       <Link color="#000" fontWeight="600">
         {children}
       </Link>
