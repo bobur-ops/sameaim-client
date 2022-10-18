@@ -13,6 +13,14 @@ const Form = ({ create, loading }) => {
   const [clubName, setClubName] = useState('')
   const [description, setDescription] = useState('')
 
+  const isBtnDisabled = () => {
+    if (clubName && description) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   return (
     <Stack spacing={6}>
       <FormControl isRequired>
@@ -32,6 +40,7 @@ const Form = ({ create, loading }) => {
       </FormControl>
       <Button
         isLoading={loading}
+        disabled={isBtnDisabled()}
         loadingText="Creating..."
         onClick={() => create({ clubName, description })}
         colorScheme={'blue'}

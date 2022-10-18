@@ -30,7 +30,7 @@ export const GlobalContextProvider = ({ children }) => {
       const data = {
         ...clubData,
         author: JSON.stringify(user),
-        clubId: uniqueId()
+        clubId: uniqueId('club')
       }
 
       const response = await createClubApi(data)

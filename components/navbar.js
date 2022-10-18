@@ -1,5 +1,6 @@
 import { HamburgerIcon } from '@chakra-ui/icons'
 import {
+  Avatar,
   Box,
   Button,
   Container,
@@ -100,7 +101,7 @@ const Navbar = props => {
           </Button>
         ) : (
           <HStack cursor={'pointer'} onClick={() => router.push('/profile')}>
-            <Icon width={'30px'} height={'30px'} as={BsFillPersonFill} />
+            <Avatar name={user.fullName} size={'md'} />
             <Text>{user?.fullName}</Text>
           </HStack>
         )}

@@ -38,7 +38,7 @@ const SignUp = () => {
       fullName,
       email,
       password,
-      userId: uniqueId()
+      userId: uniqueId('user')
     }
 
     try {

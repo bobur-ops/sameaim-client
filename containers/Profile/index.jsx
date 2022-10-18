@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   Heading,
@@ -69,8 +70,8 @@ const Profile = () => {
         align={'center'}
         mb={30}
       >
-        <Box border="1px">
-          <Icon w={120} h={120} as={BsFillPersonFill} />
+        <Box>
+          <Avatar size={'2xl'} name={user.fullName} />
         </Box>
         <VStack>
           <Text fontWeight={'semibold'} fontSize={'3xl'}>
