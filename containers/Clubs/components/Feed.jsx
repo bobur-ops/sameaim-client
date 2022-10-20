@@ -13,18 +13,22 @@ const Feed = ({ posts }) => {
   }
 
   return (
-    <Box borderRadius={12} bg="white" p={15}>
+    <Box borderRadius={12}>
       <Text fontSize={'2xl'} fontWeight="semibold">
         Feed
       </Text>
       <Box mt={'5'}>
-        {posts.map(item => (
-          <NextLink key={item.postId} href={`/clubs/${id}/${item.postId}`}>
-            <Link>
-              <FeedItem data={item} />
-            </Link>
-          </NextLink>
-        ))}
+        {posts.length ? (
+          posts.map(item => (
+            <NextLink key={item.postId} href={`/clubs/${id}/${item.postId}`}>
+              <Link>
+                <FeedItem data={item} />
+              </Link>
+            </NextLink>
+          ))
+        ) : (
+          <Text>There are no posts yet</Text>
+        )}
       </Box>
     </Box>
   )

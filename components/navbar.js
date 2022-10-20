@@ -39,7 +39,14 @@ const Navbar = props => {
   const { user } = useGlobalContext()
 
   return (
-    <Box as="nav" w="100%" {...props}>
+    <Box
+      as="nav"
+      w="100%"
+      {...props}
+      mb={'25px'}
+      borderBottom={'1px'}
+      borderColor={'gray.200'}
+    >
       <Container
         display="flex"
         p={2}

@@ -6,8 +6,8 @@ const SideBar = ({ members }) => {
   const data = members.map(item => JSON.parse(item))
 
   return (
-    <Box borderRadius={12} bg="white" paddingX={5} paddingY={2}>
-      <Text fontSize={'2xl'} fontWeight="semibold">
+    <Box borderRadius={12}>
+      <Text fontSize={'2xl'} fontWeight="semibold" mb={'3'}>
         Members
       </Text>
 

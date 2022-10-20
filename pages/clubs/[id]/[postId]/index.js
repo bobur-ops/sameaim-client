@@ -1,13 +1,18 @@
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { getPostApi } from '../../../../api/client'
+import PostPage from '../../../../containers/Clubs/components/PostPage'
 
-const Page = () => {
-  const router = useRouter()
-  const { postId } = router.query
-  useEffect(() => {
-    console.log(postId)
-  }, [])
-  return <div>{postId}</div>
+const Page = ({ data }) => {
+  return <PostPage data={data} />
 }
 
 export default Page
+
+export async function getServerSideProps({ params: { id, postId } }) {
+  const data = await getPostApi(id, postId)
+
+  return {
+    props: {
+      data: data.data
+    }
+  }
+}
