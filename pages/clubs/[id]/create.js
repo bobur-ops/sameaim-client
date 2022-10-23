@@ -1,5 +1,5 @@
 import { getClubApi } from '../../../api/client'
-import CreatePage from '../../../containers/Clubs/components/CreatePage'
+import CreatePage from '../../../containers/Clubs/pages/CreatePage'
 
 const Page = ({ clubID, authorId }) => {
   return <CreatePage clubID={clubID} authorId={authorId} />

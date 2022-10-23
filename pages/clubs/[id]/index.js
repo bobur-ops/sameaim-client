@@ -1,5 +1,5 @@
 import { getClubApi } from '../../../api/client'
-import Club from '../../../containers/Clubs/Club'
+import Club from '../../../containers/Clubs/pages/Club'
 
 const Page = ({ clubDetails }) => {
   return <Club clubDetails={clubDetails} />

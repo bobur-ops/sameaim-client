@@ -3,11 +3,11 @@ import News from './components/News'
 import Rating from './components/Rating'
 import YourClub from './components/YourClub'
 
-const Home = ({ ratingData }) => {
+const Home = ({ ratingData, news }) => {
   return (
     <div>
       <Header />
-      <News />
+      <News news={news} />
       <Rating data={ratingData} />
       <YourClub />
     </div>

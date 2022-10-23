@@ -57,7 +57,6 @@ const Comment = ({ comment, clubId, postId }) => {
       toast.success('Ready')
     } catch (error) {
       console.log(error)
-      // toast.error(`${error.response.data.message}`)
     }
   }
 
@@ -65,12 +64,12 @@ const Comment = ({ comment, clubId, postId }) => {
     return hasLiked ? (
       <HStack>
         <Icon as={HiThumbUp} />
-        <Text>{commentLikes.length}</Text>
+        <Text>{commentLikes?.length}</Text>
       </HStack>
     ) : (
       <HStack>
         <Icon as={HiOutlineThumbUp} />
-        <Text>{commentLikes.length}</Text>
+        <Text>{commentLikes?.length}</Text>
       </HStack>
     )
   }
@@ -78,8 +77,8 @@ const Comment = ({ comment, clubId, postId }) => {
   return (
     <Box mb={'50px'}>
       <HStack mb={0} ml={-2.5}>
-        <Avatar size="xs" name={author.fullName} />
-        <Text fontSize={'sm'}>{author.fullName}</Text>
+        <Avatar size="xs" name={author?.fullName} />
+        <Text fontSize={'sm'}>{author?.fullName}</Text>
       </HStack>
       <Box pl={5} borderLeft={'2px'} borderColor={'gray.300'}>
         <Text>{comment.text}</Text>

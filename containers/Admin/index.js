@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 
+import { Box, Heading } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import Stats from './components/Stats'
 
 const Admin = () => {
   const router = useRouter()
@@ -12,7 +14,12 @@ const Admin = () => {
     }
   })
 
-  return <div>Admin Page</div>
+  return (
+    <Box>
+      <Heading>Admin Dashboard</Heading>
+      <Stats />
+    </Box>
+  )
 }
 
 export default Admin

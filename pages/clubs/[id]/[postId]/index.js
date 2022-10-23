@@ -1,5 +1,5 @@
 import { getPostApi } from '../../../../api/client'
-import PostPage from '../../../../containers/Clubs/components/PostPage'
+import PostPage from '../../../../containers/Clubs/pages/PostPage'
 
 const Page = ({ data }) => {
   return <PostPage data={data} />
